@@ -5,12 +5,12 @@ class ReviewsController < ApplicationController
    @review = Review.new
  end
 
- def create
+def create
    @review = Review.new(review_params)
    # we need `restaurant_id` to asssociate review with corresponding restaurant
    @review.restaurant = Restaurant.find(params[:restaurant_id])
+   @restaurant = Restaurant.find(params[:restaurant_id])
    if @review.save
-     @restaurant = Restaurant.find(params[:restaurant_id])
      redirect_to @restaurant
    else
      render :new
